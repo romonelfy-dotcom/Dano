@@ -3,87 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countryballs Game</title>
-    <style>
-        body { margin: 0; }
-        canvas { display: block; margin: 0 auto; background: #f0f0f0; }
-    </style>
+    <title>Victoria 3 Styled Strategy Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <header>
+        <h1>Strategy Game</h1>
+        <div class="stats">
+            <p>Current Nations: 8</p>
+            <p>Dynamic Power: Active</p>
+        </div>
+    </header>
+    <main>
+        <div class="game-container">
+            <!-- Game graphics with Victoria 3 style -->
+            <canvas id="gameCanvas"></canvas>
+        </div>
+        <div class="controls">
+            <button id="pauseBtn">Pause</button>
+            <button id="resumeBtn">Resume</button>
+            <button id="startBtn">Start Game</button>
+        </div>
+        <footer>
+            <p>Use the following controls to navigate your strategy: ↑ ↓ → ←</p>
+        </footer>
+    </main>
+    <div class="modal" id="startMenu">
+        <h2>Start Menu</h2>
+        <button id="closeMenu">Close</button>
+    </div>
     <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let balls = [];
-        let score = 0;
-        let gameStarted = false;
-
-        function CountryBall(x, y, color) {
-            this.x = x;
-            this.y = y;
-            this.color = color;
-            this.radius = 20;
-            this.speed = 5;
-            this.isMoving = false;
-
-            this.draw = function() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-                ctx.closePath();
-            };
-
-            this.update = function() {
-                if (this.isMoving) {
-                    // Move the ball based on some logic (like keyboard input)
-                    this.x += Math.random() * this.speed - this.speed / 2;
-                    this.y += Math.random() * this.speed - this.speed / 2;
-                }
-            };
-        }
-
-        // Game setup
-        function init() {
-            balls.push(new CountryBall(100, 100, 'red'));
-            balls.push(new CountryBall(200, 200, 'blue'));
-            balls.push(new CountryBall(300, 300, 'green'));
-            drawStartMenu();
-        }
-
-        function drawStartMenu() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'white';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'black';
-            ctx.font = '30px Arial';
-            ctx.fillText('Countryballs Game', canvas.width / 2 - 100, canvas.height / 2 - 30);
-            ctx.fillText('Press Enter to Start', canvas.width / 2 - 120, canvas.height / 2 + 30);
-        }
-
-        function gameLoop() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Update and draw balls
-            for (let ball of balls) {
-                ball.update();
-                ball.draw();
-            }
-            // Draw score
-            ctx.fillStyle = 'black';
-            ctx.font = '20px Arial';
-            ctx.fillText('Score: ' + score, 10, 20);
-            requestAnimationFrame(gameLoop);
-        }
-
-        window.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !gameStarted) {
-                gameStarted = true;
-                gameLoop();
-            }
-        });
-
-        init();
+        // Initialize game
+        function init() { /* Game initialization code */ }
+        document.getElementById('startBtn').addEventListener('click', init);
     </script>
 </body>
 </html>
